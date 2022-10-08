@@ -1,0 +1,37 @@
+Note next progress
+
+1. Merubah inputan tanggal dari string manual ke datepicker
+2. Satu url tapi beda route (kalau bisa)                    {{ Done }}
+3. Tidak bisa membuka view role satu dengan yang lain       {{ Done }}
+4. Link navbar berubah sesuai dengan role yang terpilih     {{ Done }}
+5. Routing dari masing-masing link pada navbar              {{ Kurang kalender & chat }}
+6. Membuat view dari masing-masing route                    {{ Kurang kalender & chat }}
+7. Membuat fitur dari masing-masing halaman
+    => Membuat fitur untuk kelas                            {{ Untuk tampilan secara garis besar sudah menggambarkan }}
+        -> Fitur absen
+        -> Fitur penyimpanan data materi
+        -> Fitur quiz
+        -> Fitur diskusi
+    => Membuat tampilan kelas                               {{ Untuk tampilan secara garis besar sudah menggambarkan }}
+    => Membuat fitur kalender
+        -> Tampilan kalender
+        -> Sync dengan jadwal
+    => Membuat fitur chat
+
+------------------------------------------------------------------------------------------------------------------------
+
+Update 26 September 2022
+
+1. Merubah DashboardController & RoleRegisterController menjadi AdminController, TeacherController, dan StudentController.
+    -> Dimana ketiga controller pecahan tersebut adalah resource controller.
+
+Update 27 September 2022
+1. Merapikan ketiga controller pecahan dari DashboardController & RoleRegisterController
+    -> Fitur create sudah aman, tinggal bagian edit & delete
+
+Update 28 September 2022
+1. Memasukkan form, table, dan alert ke dalam include agar mudah dalam pemanggilan dalam view lain
+2. View modal edit sudah bisa, namun belum mencoba mengedit data
+
+Update 8 Oktober 2022
+1. Modal Edit sudah aman belum yang bagian delete
