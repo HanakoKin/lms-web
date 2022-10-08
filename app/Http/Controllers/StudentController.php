@@ -49,19 +49,49 @@ class StudentController extends Controller
         );
     }
 
-    public function update(Request $request, Student $student)
+    public function update(Request $request)
     {
-        //
+        $student = User::findOrFail($request->id);
+
+        $student->name = $request->name;
+        $student->username = $request->username;
+        $student->email = $request->email;
+        $student->save();
+
+        $ketstudent = Student::where('user_id', $request->id)->first();
+        $ketstudent->jenis_kelamin = $request->gender;
+        $ketstudent->alamat = $request->address;
+        $ketstudent->tanggal_lahir = $request->dateofbirth;
+        $ketstudent->kelas = $request->class;
+        $ketstudent->jurusan = $request->major;
+        $ketstudent->save();
+
+        return back()->with(
+            'status',
+            'Success update a student in your table!'
+        );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
+    public function detailedit($id)
     {
-        //
+        $student = User::select(
+            'users.id',
+            'users.name',
+            'users.username',
+            'users.role',
+            'users.email',
+            'students.user_id',
+            'students.nis',
+            'students.jenis_kelamin',
+            'students.alamat',
+            'students.tanggal_lahir',
+            'students.kelas',
+            'students.jurusan'
+        )
+            ->join('students', 'students.user_id', '=', 'users.id')
+            ->where('users.id', '=', $id)
+            ->first();
+
+        return $student;
     }
 }

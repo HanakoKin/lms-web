@@ -15,11 +15,11 @@ class TeacherController extends Controller
     {
         return view('teacher.dashboard', [
             'title' => 'Dashboard for Teacher',
-            'teachers' => User::select('name', 'username', 'email')
+            'teachers' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'teacher')
                 ->paginate(5)
                 ->withQueryString(),
-            'students' => User::select('name', 'username', 'email')
+            'students' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'student')
                 ->paginate(5)
                 ->withQueryString(),
@@ -53,13 +53,44 @@ class TeacherController extends Controller
         );
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $teacher = User::findOrFail($request->id);
+
+        $teacher->name = $request->name;
+        $teacher->username = $request->username;
+        $teacher->email = $request->email;
+        $teacher->save();
+
+        $ketteacher = Teacher::where('user_id', $request->id)->first();
+        $ketteacher->nip = $request->nip;
+        $ketteacher->jenis_kelamin = $request->gender;
+        $ketteacher->alamat = $request->address;
+        $ketteacher->save();
+
+        return back()->with(
+            'status',
+            'Success update a teacher in your table!'
+        );
     }
 
-    public function destroy($id)
+    public function detailedit($id)
     {
-        //
+        $teacher = User::select(
+            'users.id',
+            'users.name',
+            'users.username',
+            'users.role',
+            'users.email',
+            'teachers.user_id',
+            'teachers.nip',
+            'teachers.jenis_kelamin',
+            'teachers.alamat'
+        )
+            ->join('teachers', 'teachers.user_id', '=', 'users.id')
+            ->where('users.id', '=', $id)
+            ->first();
+
+        return $teacher;
     }
 }

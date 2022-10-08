@@ -34,4 +34,4 @@ Update 28 September 2022
 2. View modal edit sudah bisa, namun belum mencoba mengedit data
 
 Update 8 Oktober 2022
-1. Modal Edit sudah aman belum yang bagian delete
+1. Modal Edit sudah aman semua, belum yang bagian delete

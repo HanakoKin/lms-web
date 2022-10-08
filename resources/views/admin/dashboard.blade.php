@@ -67,6 +67,10 @@
 
                                 @include('include.add_teacher')
 
+                                @foreach ($teachers as $teacher)
+                                    @include('include.edit_delete_teacher')
+                                @endforeach
+
                                 @include('table.teacher_table')
 
                                 @include('include.script_teacher')
@@ -90,6 +94,10 @@
                                 <h5 class="card-title mb-0">Student Table</h5>
 
                                 @include('include.add_student')
+
+                                @foreach ($students as $student)
+                                    @include('include.edit_delete_student')
+                                @endforeach
 
                                 @include('table.student_table')
 

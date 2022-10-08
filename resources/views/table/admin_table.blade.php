@@ -16,7 +16,7 @@
                 <td>{{ $admin->username }}</td>
                 <td>{{ $admin->email }}</td>
                 <td>
-                    <a onclick="edit({{ $admin->id }})" data-bs-toggle="modal" data-bs-target="#editModalAdmin"
+                    <a onclick="editadmin({{ $admin->id }})" data-bs-toggle="modal" data-bs-target="#editModalAdmin"
                         class="btn btn-success">EDIT</a>
                     <a href="#delete{{ $admin->name }}" data-bs-toggle="modal" class="badge bg-warning"><span
                             data-feather="delete"></span></a>

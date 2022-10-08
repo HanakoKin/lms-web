@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('teachers.store') }}" method="post">
+                <form action="{{ url('dashboard/teacher') }}" method="post">
                     @csrf
 
                     <div class="form-floating mb-2">

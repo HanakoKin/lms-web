@@ -4,20 +4,20 @@
             $('#datatable').DataTable();
         });
 
-        function edit(id) {
+        function editadmin(id) {
 
             console.log(id);
 
             $.ajax({
-                url: "{{ url('dashboard/admins/detailedit') }}" + "/" + id,
+                url: "{{ url('dashboard/admin/detailedit') }}" + "/" + id,
                 dataType: "json",
                 success: function(status) {
-                    $('#editid').val(status.id);
-                    $('#editname').val(status.name);
-                    $('#editusername').val(status.username);
-                    $('#editgender').val(status.jenis_kelamin);
-                    $('#editaddress').val(status.alamat);
-                    $('#editemail').val(status.email);
+                    $('#editidadmin').val(status.id);
+                    $('#editnameadmin').val(status.name);
+                    $('#editusernameadmin').val(status.username);
+                    $('#editgenderadmin').val(status.jenis_kelamin);
+                    $('#editaddressadmin').val(status.alamat);
+                    $('#editemailadmin').val(status.email);
                 },
             });
         }

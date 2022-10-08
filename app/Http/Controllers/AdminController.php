@@ -21,10 +21,10 @@ class AdminController extends Controller
             'admins' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'admin')
                 ->get(),
-            'teachers' => User::select('name', 'username', 'email')
+            'teachers' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'teacher')
                 ->get(),
-            'students' => User::select('name', 'username', 'email')
+            'students' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'student')
                 ->get(),
             'subjects' => Subject::select('name')->get(),

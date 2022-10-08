@@ -16,8 +16,8 @@
                 <td>{{ $student->username }}</td>
                 <td>{{ $student->email }}</td>
                 <td>
-                    <a href="/dashboard/posts" class="badge bg-info"><span data-feather="eye"></span></a>
-                    <a href="/dashboard/posts" class="badge bg-warning"><span data-feather="edit"></span></a>
+                    <a onclick="editstudent({{ $student->id }})" data-bs-toggle="modal" data-bs-target="#editModalStudent"
+                        class="btn btn-success">Edit</a>
                     <form action="/dashboard/posts" method="post" class="d-inline">
                         @method('delete')
                         @csrf

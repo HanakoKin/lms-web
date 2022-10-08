@@ -1,27 +1,30 @@
 @section('script3')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#datatable3').dataTable();
-
-            table.on('click', '.edit', function() {
-
-                $tr = $(this).closest('tr');
-                if ($($tr).hasClass('child')) {
-                    $tr = $tr.prev('.parent');
-                }
-
-                var data = table.row($tr).data();
-                console.log(data);
-
-                $('#name').val(data[1]);
-                $('#username').val(data[2]);
-                $('#gender').val(data[3]);
-                $('#address').val(data[4]);
-                $('#email').val(data[5]);
-
-                $('#editFormAdmin').attr('action', '/dashboard/admins/' + data[0]);
-                $('#editModalAdmin').modal('show');
-            });
+            $('#datatable3').DataTable();
         });
+
+        function editstudent(id) {
+
+            console.log(id);
+
+            $.ajax({
+                url: "{{ url('dashboard/student/detailedit') }}" + "/" + id,
+                dataType: "json",
+                type: 'get',
+                success: function(status) {
+                    $('#editidstudent').val(status.id);
+                    $('#editnamestudent').val(status.name);
+                    $('#editusernamestudent').val(status.username);
+                    $('#editnisstudent').val(status.nis);
+                    $('#editgenderstudent').val(status.jenis_kelamin);
+                    $('#editaddressstudent').val(status.alamat);
+                    $('#editdateofbirthstudent').val(status.tanggal_lahir);
+                    $('#editclassstudent').val(status.kelas);
+                    $('#editmajorstudent').val(status.jurusan);
+                    $('#editemailstudent').val(status.email);
+                },
+            });
+        }
     </script>
 @endsection

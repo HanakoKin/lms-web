@@ -23,64 +23,102 @@ use App\Http\Controllers\RoleRegisterController;
 |
 */
 
-// Route for register
-// Route::post('/adminregister', [RoleRegisterController::class, 'admin']);
-// Route::post('/teacherregister', [RoleRegisterController::class, 'teacher']);
-// Route::post('/studentregister', [RoleRegisterController::class, 'student']);
-// Route::post('/subjectregister', [RoleRegisterController::class, 'subject']);
+/*
+|--------------------------------------------------------------------------
+| Routes for login
+|--------------------------------------------------------------------------
+ */
 
-// Route for login & logout
 Route::get('/login', [LoginController::class, 'index'])
     ->name('login')
     ->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// Route for dashboard
-// Route::get('/dashboard/admin', [
-//     DashboardController::class,
-//     'dashboardAdmin',
-// ])->middleware('admin');
-// Route::get('/dashboard/student', [
-//     DashboardController::class,
-//     'dashboardStudent',
-// ])->middleware('auth');
-// Route::get('/dashboard/teacher', [
-//     DashboardController::class,
-//     'dashboardTeacher',
-// ])->middleware('auth');
+/*
+|--------------------------------------------------------------------------
+| Routes for admin dashboard
+|--------------------------------------------------------------------------
+ */
 
-Route::get('/dashboard/admins', [AdminController::class, 'index'])->middleware(
+Route::get('/dashboard/admin', [AdminController::class, 'index'])->middleware(
     'admin'
 );
-Route::post('/dashboard/admins', [AdminController::class, 'store'])->middleware(
+Route::post('/dashboard/admin', [AdminController::class, 'store'])->middleware(
     'admin'
 );
-Route::put('/dashboard/admins/updateadmin', [
+Route::put('/dashboard/admin/updateadmin', [
     AdminController::class,
     'update',
 ])->middleware('admin');
 
-Route::get('dashboard/admins/detailedit/{id}', [
+Route::get('dashboard/admin/detailedit/{id}', [
     AdminController::class,
     'detailedit',
 ])->middleware('admin');
 
-// Route::put('dashboard/admins/updateadmin', [
-//     AdminController::class,
-//     'updateadmin',
-// ])->middleware('admin');
+/*
+|--------------------------------------------------------------------------
+| Routes for teacher dashboard
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/dashboard/teacher', [
+    TeacherController::class,
+    'index',
+])->middleware('auth');
+Route::post('/dashboard/teacher', [
+    TeacherController::class,
+    'store',
+])->middleware('auth');
+Route::put('/dashboard/teacher/updateteacher', [
+    TeacherController::class,
+    'update',
+])->middleware('auth');
+
+Route::get('dashboard/teacher/detailedit/{id}', [
+    TeacherController::class,
+    'detailedit',
+])->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| Routes for student dashboard
+|--------------------------------------------------------------------------
+ */
+
+Route::get('/dashboard/student', [
+    StudentController::class,
+    'index',
+])->middleware('auth');
+Route::post('/dashboard/student', [
+    StudentController::class,
+    'store',
+])->middleware('auth');
+Route::put('/dashboard/student/updatestudent', [
+    StudentController::class,
+    'update',
+])->middleware('auth');
+
+Route::get('dashboard/student/detailedit/{id}', [
+    StudentController::class,
+    'detailedit',
+])->middleware('auth');
 
 // Route for dashboard (alternate)
-// Route::resource('/dashboard/admins', AdminController::class)->middleware(
-//     'admin'
-// );
-Route::resource('/dashboard/teachers', TeacherController::class)->middleware(
+
+/* Route::resource('/dashboard/admins', AdminController::class)->middleware(
+    'admin'
+); */
+
+/* Route::resource('/dashboard/teachers', TeacherController::class)->middleware(
     'auth'
-);
-Route::resource('/dashboard/students', StudentController::class)->middleware(
+); */
+
+/* Route::resource('/dashboard/students', StudentController::class)->middleware(
     'auth'
-);
+); */
+
 Route::resource('/subjects', SubjectController::class)->middleware('auth');
 
 // Route for courses
