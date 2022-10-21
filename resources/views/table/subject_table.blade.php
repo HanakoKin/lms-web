@@ -12,14 +12,11 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $subject->name }}</td>
                 <td>
-                    <a href="/dashboard/posts" class="badge bg-info"><span data-feather="eye"></span></a>
-                    <a href="/dashboard/posts" class="badge bg-warning"><span data-feather="edit"></span></a>
-                    <form action="/dashboard/posts" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button class="badge bg-danger border-0" onclick="return confirm('Are you sure ?')"><span
-                                data-feather="x-circle"></span></button>
-                    </form>
+                    <a onclick="editsubject({{ $subject->id }})" data-bs-toggle="modal" data-bs-target="#editModalSubject"
+                        class="badge bg-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="/dashboard/subject/deletesubject/{{ $subject->id }}"
+                        onclick="return confirm('Are you sure ?')" class="badge bg-danger"><i
+                            class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         @endforeach

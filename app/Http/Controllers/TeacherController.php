@@ -74,6 +74,16 @@ class TeacherController extends Controller
         );
     }
 
+    public function delete($id)
+    {
+        $teacher = User::where('users.id', '=', $id)->delete();
+
+        return back()->with(
+            'status',
+            'Success delete a teacher in your table!'
+        );
+    }
+
     public function detailedit($id)
     {
         $teacher = User::select(

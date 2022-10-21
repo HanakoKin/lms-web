@@ -33,7 +33,7 @@ class StudentController extends Controller
 
         $user = User::create($validatedData);
 
-        $admin = Student::create([
+        $student = Student::create([
             'user_id' => $user['id'],
             'nis' => $request['nis'],
             'jenis_kelamin' => $request['gender'],
@@ -69,6 +69,16 @@ class StudentController extends Controller
         return back()->with(
             'status',
             'Success update a student in your table!'
+        );
+    }
+
+    public function delete($id)
+    {
+        $student = User::where('users.id', '=', $id)->delete();
+
+        return back()->with(
+            'status',
+            'Success delete a student in your table!'
         );
     }
 

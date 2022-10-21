@@ -24,13 +24,34 @@ class SubjectController extends Controller
         );
     }
 
-    public function update(UpdateSubjectRequest $request, Subject $subject)
+    public function update(Request $request)
     {
-        //
+        $subject = Subject::findOrFail($request->id);
+        $subject->name = $request->name;
+        $subject->save();
+
+        return back()->with(
+            'status',
+            'Success update a subject in your table!'
+        );
     }
 
-    public function destroy(Subject $subject)
+    public function delete($id)
     {
-        //
+        $subject = Subject::where('subjects.id', '=', $id)->delete();
+
+        return back()->with(
+            'status',
+            'Success delete a subject in your table!'
+        );
+    }
+
+    public function detailedit($id)
+    {
+        $subject = Subject::select('subjects.id', 'subjects.name')
+            ->where('subjects.id', '=', $id)
+            ->first();
+
+        return $subject;
     }
 }

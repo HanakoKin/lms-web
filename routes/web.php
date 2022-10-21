@@ -44,12 +44,19 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard/admin', [AdminController::class, 'index'])->middleware(
     'admin'
 );
+
 Route::post('/dashboard/admin', [AdminController::class, 'store'])->middleware(
     'admin'
 );
+
 Route::put('/dashboard/admin/updateadmin', [
     AdminController::class,
     'update',
+])->middleware('admin');
+
+Route::get('/dashboard/admin/deleteadmin/{id}', [
+    AdminController::class,
+    'delete',
 ])->middleware('admin');
 
 Route::get('dashboard/admin/detailedit/{id}', [
@@ -67,13 +74,20 @@ Route::get('/dashboard/teacher', [
     TeacherController::class,
     'index',
 ])->middleware('auth');
+
 Route::post('/dashboard/teacher', [
     TeacherController::class,
     'store',
 ])->middleware('auth');
+
 Route::put('/dashboard/teacher/updateteacher', [
     TeacherController::class,
     'update',
+])->middleware('auth');
+
+Route::get('/dashboard/teacher/deleteteacher/{id}', [
+    TeacherController::class,
+    'delete',
 ])->middleware('auth');
 
 Route::get('dashboard/teacher/detailedit/{id}', [
@@ -91,13 +105,20 @@ Route::get('/dashboard/student', [
     StudentController::class,
     'index',
 ])->middleware('auth');
+
 Route::post('/dashboard/student', [
     StudentController::class,
     'store',
 ])->middleware('auth');
+
 Route::put('/dashboard/student/updatestudent', [
     StudentController::class,
     'update',
+])->middleware('auth');
+
+Route::get('/dashboard/student/deletestudent/{id}', [
+    StudentController::class,
+    'delete',
 ])->middleware('auth');
 
 Route::get('dashboard/student/detailedit/{id}', [
@@ -105,24 +126,46 @@ Route::get('dashboard/student/detailedit/{id}', [
     'detailedit',
 ])->middleware('auth');
 
-// Route for dashboard (alternate)
+/*
+|--------------------------------------------------------------------------
+| Routes for subject dashboard
+|--------------------------------------------------------------------------
+ */
 
-/* Route::resource('/dashboard/admins', AdminController::class)->middleware(
-    'admin'
-); */
+Route::post('/dashboard/subject', [
+    SubjectController::class,
+    'store',
+])->middleware('auth');
 
-/* Route::resource('/dashboard/teachers', TeacherController::class)->middleware(
-    'auth'
-); */
+Route::put('/dashboard/subject/updatesubject', [
+    SubjectController::class,
+    'update',
+])->middleware('auth');
 
-/* Route::resource('/dashboard/students', StudentController::class)->middleware(
-    'auth'
-); */
+Route::get('/dashboard/subject/deletesubject/{id}', [
+    SubjectController::class,
+    'delete',
+])->middleware('auth');
 
-Route::resource('/subjects', SubjectController::class)->middleware('auth');
+Route::get('dashboard/subject/detailedit/{id}', [
+    SubjectController::class,
+    'detailedit',
+])->middleware('auth');
 
-// Route for courses
-Route::get('/courses/{name}', [CourseController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| Routes for courses dashboard
+|--------------------------------------------------------------------------
+ */
+
+// Route for courses menus
+Route::get('/courses/absent/{name}', [CourseController::class, 'absent']);
+Route::get('/courses/storage/{name}', [CourseController::class, 'storage']);
+Route::get('/courses/quiz/{name}', [CourseController::class, 'quiz']);
+Route::get('/courses/discussion/{name}', [
+    CourseController::class,
+    'discussion',
+]);
 
 // Route for classes
 Route::get('/classes/{name}', [KelasController::class, 'index']);

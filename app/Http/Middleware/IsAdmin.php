@@ -18,9 +18,9 @@ class IsAdmin
     {
         if (auth()->guest() || auth()->user()->role !== 'admin') {
             if (auth()->guest() || auth()->user()->role == 'teacher') {
-                return redirect('dashboard/teachers');
+                return redirect('dashboard/teacher');
             } elseif (auth()->guest() || auth()->user()->role == 'student') {
-                return redirect('dashboard/students');
+                return redirect('dashboard/student');
             }
             return redirect('login');
         }

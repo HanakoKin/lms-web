@@ -39,7 +39,7 @@
                                 @include('include.add_admin')
 
                                 @foreach ($admins as $admin)
-                                    @include('include.edit_delete_admin')
+                                    @include('include.edit_admin')
                                 @endforeach
 
                                 @include('table.admin_table')
@@ -61,14 +61,14 @@
 
                             </div>
 
-                            <div class="card-body pb-0">
+                            <div class="card-body pb-2">
 
                                 <h5 class="card-title mb-0">Teacher Table</h5>
 
                                 @include('include.add_teacher')
 
                                 @foreach ($teachers as $teacher)
-                                    @include('include.edit_delete_teacher')
+                                    @include('include.edit_teacher')
                                 @endforeach
 
                                 @include('table.teacher_table')
@@ -90,13 +90,13 @@
 
                             </div>
 
-                            <div class="card-body pb-0">
+                            <div class="card-body pb-2">
                                 <h5 class="card-title mb-0">Student Table</h5>
 
                                 @include('include.add_student')
 
                                 @foreach ($students as $student)
-                                    @include('include.edit_delete_student')
+                                    @include('include.edit_student')
                                 @endforeach
 
                                 @include('table.student_table')
@@ -118,10 +118,14 @@
 
                             </div>
 
-                            <div class="card-body pb-0">
+                            <div class="card-body pb-2">
                                 <h5 class="card-title mb-0">Subjects Table</h5>
 
                                 @include('include.add_subject')
+
+                                @foreach ($subjects as $subject)
+                                    @include('include.edit_subject')
+                                @endforeach
 
                                 @include('table.subject_table')
 

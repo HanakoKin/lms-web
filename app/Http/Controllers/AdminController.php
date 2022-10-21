@@ -27,7 +27,7 @@ class AdminController extends Controller
             'students' => User::select('id', 'name', 'username', 'email')
                 ->where('role', 'student')
                 ->get(),
-            'subjects' => Subject::select('name')->get(),
+            'subjects' => Subject::all(),
         ]);
     }
 
@@ -72,6 +72,13 @@ class AdminController extends Controller
         $ketadmin->save();
 
         return back()->with('status', 'Success update an admin in your table!');
+    }
+
+    public function delete($id)
+    {
+        $admin = User::where('users.id', '=', $id)->delete();
+
+        return back()->with('status', 'Success delete an admin in your table!');
     }
 
     public function detailedit($id)

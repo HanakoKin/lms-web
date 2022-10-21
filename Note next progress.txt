@@ -35,3 +35,11 @@ Update 28 September 2022
 
 Update 8 Oktober 2022
 1. Modal Edit sudah aman semua, belum yang bagian delete
+
+Update sampai 22 Oktober 2022
+1. Modal delete aman semua
+2. Memecah submenu dari courses menjadi 4 navbar dropdown
+
+{{ ! Goals malam ini ! }}
+
+1. Membuat dropdown dari courses di setiap submenu courses

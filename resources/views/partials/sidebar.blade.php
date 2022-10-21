@@ -15,10 +15,43 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('*courses*') ? '' : 'collapsed' }}" data-bs-target="#courses-nav"
+                    data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-bar-chart"></i><span>Courses</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="courses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="nav-link {{ Request::is('*courses/absent/*') ? '' : 'collapsed' }}"
+                            href="/courses/absent/{{ auth()->user()->name }}">
+                            <i class="bi bi-circle"></i><span>Absent</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link {{ Request::is('*courses/storage/*') ? '' : 'collapsed' }}"
+                            href="/courses/storage/{{ auth()->user()->name }}">
+                            <i class="bi bi-circle"></i><span>Storage</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link {{ Request::is('*courses/quiz/*') ? '' : 'collapsed' }}"
+                            href="/courses/quiz/{{ auth()->user()->name }}">
+                            <i class="bi bi-circle"></i><span>Quiz</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link {{ Request::is('*courses/discussion/*') ? '' : 'collapsed' }}"
+                            href="/courses/discussion/{{ auth()->user()->name }}">
+                            <i class="bi bi-circle"></i><span>Discussion</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Courses Nav -->
+
+            {{-- <li class="nav-item">
+                <a class="nav-link {{ Request::is('*courses*') ? '' : 'collapsed' }}" data-bs-target="#courses-nav"
                     href="/courses/{{ auth()->user()->name }}">
                     <i class="bi bi-menu-button-wide"></i><span>Courses</span>
                 </a>
-            </li><!-- End Courses Nav -->
+            </li><!-- End Courses Nav --> --}}
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('*class*') ? '' : 'collapsed' }}" data-bs-target="#forms-nav"

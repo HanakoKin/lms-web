@@ -19,6 +19,7 @@
 
 <!-- Template Main CSS File -->
 <link href="/css/style.css" rel="stylesheet">
+{{-- <link href="/css/bootstrap.css" rel="stylesheet"> --}}
 <link href="/css/dycalendar.css" rel="stylesheet">
 
 @yield('css')

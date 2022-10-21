@@ -25,15 +25,15 @@ class LoginController extends Controller
             if (auth()->user()->role == 'admin') {
                 $request->session()->regenerate();
 
-                return redirect()->intended('/dashboard/admins');
+                return redirect()->intended('/dashboard/admin');
             } elseif (auth()->user()->role == 'teacher') {
                 $request->session()->regenerate();
 
-                return redirect()->intended('/dashboard/teachers');
+                return redirect()->intended('/dashboard/teacher');
             } elseif (auth()->user()->role == 'student') {
                 $request->session()->regenerate();
 
-                return redirect()->intended('/dashboard/students');
+                return redirect()->intended('/dashboard/student');
             }
         }
 
