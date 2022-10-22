@@ -42,6 +42,7 @@
                             </div>
                         @enderror
                     </div>
+                    <input type="hidden" id="role" name="role" value="student">
                     <div class="form-floating mb-2">
                         <div class="row mx-auto">
                             <select class="form-select" name="gender">

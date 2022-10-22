@@ -14,10 +14,10 @@ return new class extends Migration {
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->date('tanggal_upload');
             $table->date('tanggal_pengerjaan');
             $table->date('tanggal_pengumpulan');
+            $table->timestamps();
         });
     }
 

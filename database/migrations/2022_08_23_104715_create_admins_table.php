@@ -14,7 +14,11 @@ return new class extends Migration {
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table
+                ->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('jenis_kelamin');
             $table->string('alamat');
             $table->timestamps();
