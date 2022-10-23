@@ -39,3 +39,4 @@
 @yield('script2')
 @yield('script3')
 @yield('script4')
+@yield('script5')

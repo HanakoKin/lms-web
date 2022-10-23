@@ -50,7 +50,7 @@ Update sampai 22 Oktober 2022
     3. Model untuk attendance & attendance_student sudah clear
     4. AttendanceController sudah diisi fungsi yang akan digunakan, sudah diset resource
 ==> Hal yang kurang
-    1. Modal untuk menambahkan attendance
+    1. Modal untuk menambahkan attendance {{ clear }}
     2. Halaman redirect setelah berhasil menambahkan attendance
     3. Halaman untuk menambahkan student ke attendance
     3. Halaman untuk mengedit student di attendance

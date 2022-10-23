@@ -20,6 +20,7 @@ class AttendanceController extends Controller
             ->withCount('students')
             ->get();
         $subject = Subject::all();
+        $name = User::where('name', auth()->user()->name)->get();
         return view(
             'teacher.course.absent',
             compact('attendances', 'subjects')
@@ -34,7 +35,10 @@ class AttendanceController extends Controller
         $subject = Subject::findOrFail($request->get('subject_id'));
         $subject->load('students');
         alert('Good Job', 'You can start your attendance now !!!', 'success');
-        return view('', compact('attendance', 'subject'));
+        return view(
+            'teacher.course.absent.take-attendance',
+            compact('attendance', 'subject')
+        );
     }
 
     public function edit(Attendance $attendance)

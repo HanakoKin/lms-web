@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public function absent()
     {
-        return view('student.course.absent', [
+        return view('teacher.course.absent', [
             'title' => 'Course | Absent Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),

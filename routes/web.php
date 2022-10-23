@@ -11,6 +11,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleRegisterController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,7 +160,10 @@ Route::get('dashboard/subject/detailedit/{id}', [
  */
 
 // Route for courses menus
-Route::get('/courses/absent/{name}', [CourseController::class, 'absent']);
+
+Route::resource('courses/absent/{name}', AttendanceController::class);
+
+/* Route::get('/courses/absent/{name}', [CourseController::class, 'absent']); */
 Route::get('/courses/storage/{name}', [CourseController::class, 'storage']);
 Route::get('/courses/quiz/{name}', [CourseController::class, 'quiz']);
 Route::get('/courses/discussion/{name}', [
