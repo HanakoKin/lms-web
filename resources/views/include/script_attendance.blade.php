@@ -1,10 +1,16 @@
 @section('script5')
-    <script type="text/javascript">
-        $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function() {
             $('#datatable5').DataTable();
         });
-        $(".search").change(function() {
+    $(".search").change(function() {
             $('#form').submit();
         });
-    </script>
+    $(function() {
+            $('#datepicker').datepicker();
+        });
+    $(function() {
+            $('#datepicker2').datepicker();
+        });
+</script>
 @endsection

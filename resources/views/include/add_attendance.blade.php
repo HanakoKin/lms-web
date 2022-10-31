@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('atte') }}" method="post">
+                <form action="{{ route('attendance.store') }}" method="post">
                     @csrf
 
                     <div class="form-floating mb-2">
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="form-control-label" for="input-date">Choose Date*</label>
                             <input class="form-control datepicker  @error('date') is-invalid @enderror " name="date"
-                                id="input-date" placeholder="Select date" type="text"
+                                id="datepicker" placeholder="Select date" type="text"
                                 value="{{ \Carbon\Carbon::today()->format('m/d/Y') }}">
                             @error('date')
                             <span class="invalid-feedback" role="alert">

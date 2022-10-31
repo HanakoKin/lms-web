@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Attendance;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAttendanceRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AttendanceController extends Controller
 {
@@ -19,26 +21,18 @@ class AttendanceController extends Controller
             ->WhereDateIs(request()->get('date_filter'))
             ->withCount('students')
             ->get();
-        $subject = Subject::all();
-        $name = User::where('name', auth()->user()->name)->get();
-        return view(
-            'teacher.course.absent',
-            compact('attendances', 'subjects')
+        $subjects = Subject::all();
+        return view('teacher.course.absent', compact('attendances', 'subjects')
         );
     }
 
     public function store(StoreAttendanceRequest $request)
     {
-        $attendance = Attendance::create(
-            $request->validated() + ['user_id' => Auth::id()]
-        );
+        $attendance = Attendance::create($request->validated() + ['user_id' => Auth::id()]);
         $subject = Subject::findOrFail($request->get('subject_id'));
         $subject->load('students');
-        alert('Good Job', 'You can start your attendance now !!!', 'success');
-        return view(
-            'teacher.course.absent.take-attendance',
-            compact('attendance', 'subject')
-        );
+        return view('teacher.course.absent.take-attendance', compact('attendance', 'subject')
+        )->with('status', 'Good Job, You can start your attendance now !!!');
     }
 
     public function edit(Attendance $attendance)
@@ -89,9 +83,8 @@ class AttendanceController extends Controller
         try {
             $attendance->delete();
         } catch (\Exception $exception) {
-            alert('Oops', 'Please try again', 'error');
+            return back()->with('error', 'Oops, Please try again');
         }
-        alert('Good Job', 'Attendance removed successfully', 'success');
-        return back();
+        return back()->with('status', 'Good Job, Attendance removed successfully');
     }
 }

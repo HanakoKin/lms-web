@@ -20,9 +20,9 @@
                 </a>
                 <ul id="courses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a class="nav-link {{ Request::is('*courses/absent/*') ? '' : 'collapsed' }}"
-                            href="/courses/absent/{{ auth()->user()->name }}">
-                            <i class="bi bi-circle"></i><span>Absent</span>
+                        <a class="nav-link {{ Request::is('*courses/attendance/*') ? '' : 'collapsed' }}"
+                            href="/courses/attendance">
+                            <i class="bi bi-circle"></i><span>Attendance</span>
                         </a>
                     </li>
                     <li>

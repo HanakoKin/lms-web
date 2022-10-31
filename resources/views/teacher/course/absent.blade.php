@@ -21,6 +21,9 @@
         <div class="col-xl-12">
 
             <div class="bg-surface-secondary">
+                @include('include.alert')
+                @include('include.error')
+
                 <div class="card">
 
                     <div class="card-header">

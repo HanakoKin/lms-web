@@ -48,10 +48,16 @@ Update sampai 22 Oktober 2022
     1. Membuat tabel attendance & attendance_student
     2. Migrate attribute pada tabel attendance & attendance_student
     3. Model untuk attendance & attendance_student sudah clear
-    4. AttendanceController sudah diisi fungsi yang akan digunakan, sudah diset resource
+    4. AttendanceController sudah diisif fungsi yang akan digunakan, sudah diset resource
 ==> Hal yang kurang
     1. Modal untuk menambahkan attendance {{ clear }}
     2. Halaman redirect setelah berhasil menambahkan attendance
     3. Halaman untuk menambahkan student ke attendance
     3. Halaman untuk mengedit student di attendance
     4. Mengedit halaman absen guru
+
+{{ Note 31 Oktoker 2022 }}
+
+1. Membikin halaman untuk assign student
+2. Melanjutkan progress membuat fitur attendance
+3. Fitur Course bisa mencontoh dari project yang sudah ada

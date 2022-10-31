@@ -70,18 +70,9 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body pt-3">
-                        <div class="table-responsive">
-
-                            @include('table.attendance_table')
-
-                            @include('include.script_attendance')
-
-                        </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary btn-block radius">Submit</button>
+                            </div>
                     </div>
                 </div>
             </div>

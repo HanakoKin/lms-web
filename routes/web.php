@@ -6,12 +6,12 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoleRegisterController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RoleRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,11 +159,13 @@ Route::get('dashboard/subject/detailedit/{id}', [
 |--------------------------------------------------------------------------
  */
 
-// Route for courses menus
+// Route for attendance menus
 
-Route::resource('courses/absent/{name}', AttendanceController::class);
+Route::post('/courses/attendance/attach/{attendance}', [AttendanceController::class, 'attachStudents'])->name('attendance.attach');
+Route::put('/courses/attendance/attach/{attendance}/update', [AttendanceController::class, 'updateAttendanceData'])->name('attendance.student.update');
+Route::resource('/courses/attendance', AttendanceController::class);
 
-/* Route::get('/courses/absent/{name}', [CourseController::class, 'absent']); */
+
 Route::get('/courses/storage/{name}', [CourseController::class, 'storage']);
 Route::get('/courses/quiz/{name}', [CourseController::class, 'quiz']);
 Route::get('/courses/discussion/{name}', [
