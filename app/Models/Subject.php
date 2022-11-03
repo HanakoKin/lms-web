@@ -19,20 +19,24 @@ class Subject extends Model
 
     public function teacher()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
+
     public function students()
     {
         return $this->belongsToMany(Student::class,'subject_student','subject_id','student_id')->withTimestamps();
     }
+
     public function kelas()
     {
         return $this->belongsToMany(Kelas::class);
     }
+
     public function schedule()
     {
         return $this->belongsToMany(Schedule::class);
     }
+
     public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);

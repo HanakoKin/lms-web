@@ -7,11 +7,11 @@ use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CourseController extends Controller
+class ClassController extends Controller
 {
     public function absent()
     {
-        return view('teacher.course.absent', [
+        return view('teacher.class.absent', [
             'title' => 'Course | Absent Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
@@ -19,7 +19,7 @@ class CourseController extends Controller
     }
     public function storage()
     {
-        return view('student.course.storage', [
+        return view('student.class.storage', [
             'title' => 'Course | Storage Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
@@ -27,7 +27,7 @@ class CourseController extends Controller
     }
     public function quiz()
     {
-        return view('student.course.quiz', [
+        return view('student.class.quiz', [
             'title' => 'Course | Quiz Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
@@ -35,7 +35,7 @@ class CourseController extends Controller
     }
     public function discussion()
     {
-        return view('student.course.discussion', [
+        return view('student.class.discussion', [
             'title' => 'Course | Discussion Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),

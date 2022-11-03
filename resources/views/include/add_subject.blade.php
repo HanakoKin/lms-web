@@ -7,17 +7,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action={{ url('dashboard/subject') }} method="post">
+                <form action={{ route('subject.store') }} method="post">
                     @csrf
 
                     <div class="form-floating mb-2">
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            id="name" placeholder="name" required value="{{ old('name') }}">
+                            id="name" placeholder="Name" required value="{{ old('name') }}">
                         <label for="name">Name</label>
                         @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="text" name="description"
+                            class="form-control @error('description') is-invalid @enderror" id="description"
+                            placeholder="Description" required value="{{ old('description') }}">
+                        <label for="description">Description</label>
+                        @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
 

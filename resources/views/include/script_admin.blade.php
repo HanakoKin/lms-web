@@ -1,6 +1,6 @@
 @section('script1')
-    <script type="text/javascript">
-        $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function() {
             $('#datatable').DataTable();
         });
 
@@ -21,5 +21,5 @@
                 },
             });
         }
-    </script>
+</script>
 @endsection

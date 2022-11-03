@@ -61,3 +61,7 @@ Update sampai 22 Oktober 2022
 1. Membikin halaman untuk assign student
 2. Melanjutkan progress membuat fitur attendance
 3. Fitur Course bisa mencontoh dari project yang sudah ada
+
+{{ Update 1 November 2022 }}
+
+1. Menukar penamaan classes menjadi courses, dan courses menjadi class

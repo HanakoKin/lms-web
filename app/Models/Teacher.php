@@ -15,14 +15,12 @@ class Teacher extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function kelas()
     {
         return $this->hasOne(Kelas::class);
     }
-    public function subject()
-    {
-        return $this->belongsToMany(Subject::class);
-    }
+
     public function schedule()
     {
         return $this->hasOne(Schedule::class);

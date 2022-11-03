@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('dashboard/subject/updatesubject') }}" method="post" id="editFormSubject">
+                <form action="{{ route('subject.change') }}" method="post" id="editFormSubject">
 
                     @method('put')
                     @csrf
@@ -20,9 +20,20 @@
                             class="form-control @error('name') is-invalid @enderror" placeholder="name" required>
                         <label for="name">Name</label>
                         @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="text" name="description" id="editdescriptionsubject"
+                            class="form-control @error('description') is-invalid @enderror" placeholder="description"
+                            required>
+                        <label for="description">Description</label>
+                        @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

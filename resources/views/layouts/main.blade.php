@@ -1,28 +1,29 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    @include('partials.head')
+        @include('partials.head')
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <!-- Main -->
-    @include('partials.header')
-    @include('partials.sidebar')
+        <!-- Main -->
+        @include('partials.header')
 
-    <main id="main" class="main">
-        @yield('container')
-    </main>
-    <!-- End Main -->
+        @include('partials.sidebar')
 
-    @include('partials.script')
+        <main id="main" class="main">
+            @yield('container')
+        </main>
+        <!-- End Main -->
 
-</body>
+        @include('partials.script')
+
+    </body>
 
 </html>

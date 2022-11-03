@@ -22,7 +22,7 @@ class AttendanceController extends Controller
             ->withCount('students')
             ->get();
         $subjects = Subject::all();
-        return view('teacher.course.absent', compact('attendances', 'subjects')
+        return view('teacher.class.absent', compact('attendances', 'subjects')
         );
     }
 
@@ -31,7 +31,7 @@ class AttendanceController extends Controller
         $attendance = Attendance::create($request->validated() + ['user_id' => Auth::id()]);
         $subject = Subject::findOrFail($request->get('subject_id'));
         $subject->load('students');
-        return view('teacher.course.absent.take-attendance', compact('attendance', 'subject')
+        return view('teacher.class.absent.take-attendance', compact('attendance', 'subject')
         )->with('status', 'Good Job, You can start your attendance now !!!');
     }
 

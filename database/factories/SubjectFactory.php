@@ -18,6 +18,7 @@ class SubjectFactory extends Factory
     {
         return [
             'name' => $this->faker->city(),
+            'description' =>$this->faker->sentence(3),
         ];
     }
 }

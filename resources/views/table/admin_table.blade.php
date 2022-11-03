@@ -10,19 +10,18 @@
     </thead>
     <tbody>
         @foreach ($admins as $admin)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $admin->name }}</td>
-                <td>{{ $admin->username }}</td>
-                <td>{{ $admin->email }}</td>
-                <td>
-                    <a onclick="editadmin({{ $admin->id }})" data-bs-toggle="modal" data-bs-target="#editModalAdmin"
-                        class="badge bg-success"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="/dashboard/admin/deleteadmin/{{ $admin->id }}"
-                        onclick="return confirm('Are you sure ?')" class="badge bg-danger"><i
-                            class="fa-solid fa-trash"></i></a>
-                </td>
-            </tr>
+        <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $admin->name }}</td>
+            <td>{{ $admin->username }}</td>
+            <td>{{ $admin->email }}</td>
+            <td>
+                <a onclick="editadmin({{ $admin->id }})" data-bs-toggle="modal" data-bs-target="#editModalAdmin"
+                    class="badge bg-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="/dashboard/admin/deleteadmin/{{ $admin->id }}" onclick="return confirm('Are you sure ?')"
+                    class="badge bg-danger"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
         @endforeach
     </tbody>
 </table>

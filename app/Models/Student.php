@@ -23,26 +23,22 @@ class Student extends Model
 
     public function subject()
     {
-        return $this->belongsToMany(
-            Subject::class,
-            'subject_student',
-            'student_id',
-            'subject_id'
-        )->withTimestamps();
+        return $this->belongsToMany(Subject::class, 'subject_student', 'student_id', 'subject_id')->withTimestamps();
+    }
+
+    public function attendances()
+    {
+        return $this->belongsToMany(Attendance::class)->wherePivot('status');
     }
 
     public function present_count()
     {
-        return $this->belongsToMany(Attendance::class)
-            ->wherePivot('status', 1)
-            ->count();
+        return $this->belongsToMany(Attendance::class)->wherePivot('status', 1)->count();
     }
 
     public function absent_count()
     {
-        return $this->belongsToMany(Attendance::class)
-            ->wherePivot('status', 0)
-            ->count();
+        return $this->belongsToMany(Attendance::class)->wherePivot('status', 0)->count();
     }
 
     public function schedule()

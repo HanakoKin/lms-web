@@ -32,13 +32,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(Admin::class);
     }
+
     public function teacher()
     {
         return $this->hasMany(Teacher::class);
     }
+
     public function student()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class)->withTimeStamps();
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
@@ -133,48 +133,51 @@ Route::get('dashboard/student/detailedit/{id}', [
 |--------------------------------------------------------------------------
  */
 
-Route::post('/dashboard/subject', [
+/* Route::post('/dashboard/subject', [
     SubjectController::class,
     'store',
 ])->middleware('auth');
+ */
 
-Route::put('/dashboard/subject/updatesubject', [
-    SubjectController::class,
-    'update',
-])->middleware('auth');
+// Route for courses
 
-Route::get('/dashboard/subject/deletesubject/{id}', [
-    SubjectController::class,
-    'delete',
-])->middleware('auth');
+Route::get('/subject/{subject}/assign', [SubjectController::class, 'assignStudents'])->name('subject.assign-student');
 
-Route::get('dashboard/subject/detailedit/{id}', [
-    SubjectController::class,
-    'detailedit',
-])->middleware('auth');
+Route::post('/subject/{subject}/attach', [SubjectController::class, 'attachAssignedStudents'])->name('subject.attach-student');
+
+Route::delete('/subject/{subject}/detach/{student}', [SubjectController::class, 'detachAssignedStudent'])->name('subject.remove.student');
+
+Route::put('subject/updatesubject', [SubjectController::class, 'updatesubject',])->name('subject.change')->middleware('auth');
+
+Route::get('subject/deletesubject/{id}', [SubjectController::class, 'deletesubject',])->middleware('auth');
+
+Route::get('subject/detailedit/{id}', [SubjectController::class, 'detaileditsubject',])->middleware('auth');
+
+Route::resource('/subject', SubjectController::class)->except('create', 'edit', 'update', 'destroy')->middleware('auth');
+
+/* Route::get('/courses/{name}', [CourseController::class, 'index']); */
 
 /*
 |--------------------------------------------------------------------------
-| Routes for courses dashboard
+| Routes for class dashboard
 |--------------------------------------------------------------------------
  */
 
 // Route for attendance menus
 
-Route::post('/courses/attendance/attach/{attendance}', [AttendanceController::class, 'attachStudents'])->name('attendance.attach');
-Route::put('/courses/attendance/attach/{attendance}/update', [AttendanceController::class, 'updateAttendanceData'])->name('attendance.student.update');
-Route::resource('/courses/attendance', AttendanceController::class);
+Route::post('/class/attendance/attach/{attendance}', [AttendanceController::class, 'attachStudents'])->name('attendance.attach');
+Route::put('/class/attendance/attach/{attendance}/update', [AttendanceController::class, 'updateAttendanceData'])->name('attendance.student.update');
+Route::resource('/class/attendance', AttendanceController::class);
 
 
-Route::get('/courses/storage/{name}', [CourseController::class, 'storage']);
-Route::get('/courses/quiz/{name}', [CourseController::class, 'quiz']);
-Route::get('/courses/discussion/{name}', [
-    CourseController::class,
+Route::get('/class/storage/{name}', [ClassController::class, 'storage']);
+Route::get('/class/quiz/{name}', [ClassController::class, 'quiz']);
+Route::get('/class/discussion/{name}', [
+    ClassController::class,
     'discussion',
 ]);
 
-// Route for classes
-Route::get('/classes/{name}', [KelasController::class, 'index']);
+
 
 // Unused route
 Route::get('/register', [RegisterController::class, 'index']);

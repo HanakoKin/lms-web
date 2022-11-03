@@ -1,6 +1,6 @@
 @section('script4')
-    <script type="text/javascript">
-        $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function() {
             $('#datatable4').DataTable();
         });
 
@@ -9,14 +9,15 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('dashboard/subject/detailedit') }}" + "/" + id,
+                url: "{{ url('subject/detailedit') }}" + "/" + id,
                 dataType: "json",
                 type: 'get',
                 success: function(status) {
                     $('#editidsubject').val(status.id);
                     $('#editnamesubject').val(status.name);
+                    $('#editdescriptionsubject').val(status.description);
                 },
             });
         }
-    </script>
+</script>
 @endsection
