@@ -41,17 +41,18 @@ class SubjectController extends Controller
 
     public function assignStudents(Subject $subject)
     {
-        $students = Student::WhereNotIn('id', $subject->students->pluck('id'))->get();
+        $students = User::Select('id', 'name')->Where('role', 'student')->WhereNotIn('id', $subject->students->pluck('id'))->get();
         return view('teacher.courses.assign-student', compact('students', 'subject'));
     }
 
-    public function attachAssignedStudent(Subject $subject, Request $request)
+    public function attachAssignedStudents(Subject $subject, Request $request)
     {
+
         $subject->students()->attach($request->get('students'));
         return redirect()->route('subject.index')->with('status', 'Student assigned successfully');
     }
 
-    public function detachAssignedStudent(Subject $subject, Request $request)
+    public function detachAssignedStudents(Subject $subject, Student $student)
     {
         $subject->students()->detach($student);
         return back()->with('status', $student->name . ' removed successfully');

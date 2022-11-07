@@ -20,7 +20,7 @@ class Attendance extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class,'attendance_student','attendance_id','student_id')->withPivot('status');
+        return $this->belongsToMany(User::class,'attendance_student','attendance_id','student_id')->withPivot('status');
     }
 
     public function subject()

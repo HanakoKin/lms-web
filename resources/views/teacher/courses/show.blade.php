@@ -17,20 +17,22 @@
         <div class="col-xl-12">
 
             <div class="bg-surface-secondary">
+
                 <div class="card">
 
                     <div class="card-header">
-
-                        <h2 class="mt-4">{{ $subject->name }}</h2>
-                        <p class="mb-0">{{ $subject->description }}</p>
-                        <p class="text-bold"> {{ $subject->students->count() }} <i
-                                class="fas fa-users-class text-blue"></i> </p>
-
+                        <div class="text-center">
+                            <h3 class="card-title pt-1 pb-0 mt-4 mb-0">{{ $subject->name }}</h3>
+                            <p class="mb-0">{{ $subject->description }}</p>
+                            <p class="text-bold"> {{ $subject->students->count() }} <i class="fa-solid fa-users"></i>
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="card-body pt-3">
+                    <div class="card-body">
 
-                        <h2>List of Students</h2>
+                        <h3 class="card-title mb-0">List of Students</h3>
+
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush datatable-basic">
                                 <thead class="thead-light">
@@ -59,8 +61,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button onclick="return confirm('Are you sure?')" type="submit"
-                                                    class="btn btn-sm bg-red-500 text-white radius"
-                                                    title="Remove student">
+                                                    class="badge bg-danger text-white radius" title="Remove student">
                                                     <i class="fas fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </form>

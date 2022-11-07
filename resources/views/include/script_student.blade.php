@@ -1,6 +1,6 @@
 @section('script3')
-    <script type="text/javascript">
-        $(document).ready(function() {
+<script type="text/javascript">
+    $(document).ready(function() {
             $('#datatable3').DataTable();
         });
 
@@ -26,5 +26,18 @@
                 },
             });
         }
-    </script>
+
+    $(function() {
+        $('#datepicker3').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+
+    $(function() {
+        $('#datepicker4').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    });
+
+</script>
 @endsection

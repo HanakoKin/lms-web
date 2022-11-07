@@ -7,10 +7,11 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use App\Models\Subject_Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreAttendanceRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreAttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -29,30 +30,34 @@ class AttendanceController extends Controller
     public function store(StoreAttendanceRequest $request)
     {
         $attendance = Attendance::create($request->validated() + ['user_id' => Auth::id()]);
-        $subject = Subject::findOrFail($request->get('subject_id'));
+        return back()->with('status', 'Good Job, You can start your attendance now !!!');
+    }
+
+    public function show(Attendance $attendance)
+    {
+        $subject = Subject::findorfail($attendance->first('subject_id'));
         $subject->load('students');
-        return view('teacher.class.absent.take-attendance', compact('attendance', 'subject')
-        )->with('status', 'Good Job, You can start your attendance now !!!');
+
+        $attendance = Attendance::findorfail($attendance->id);
+
+        return view('teacher.class.absent.take-attendance', compact('subject', 'attendance'));
     }
 
     public function edit(Attendance $attendance)
     {
         $attendance->load('students', 'subject');
-        return view('', compact('attendance'));
+        return view('teacher.class.absent.edit-attendance', compact('attendance'));
     }
 
     public function attachStudents(Attendance $attendance, Request $request)
     {
         if ($request->get('status') == null) {
             $attendance->delete();
-            alert(
-                'Oops',
-                "You didn't take any attendance. Try again and fill all entries please",
-                'error'
-            );
+
+            return redirect('/class/attendance')->with('error', "Oops, You didn't take any attendance. Try again and fill all entries please");
         } else {
             foreach ($request->get('status') as $student_id => $status) {
-                $student = Student::findOrFail($student_id);
+                $student = User::findOrFail($student_id);
                 if ($status = 'on') {
                     $value = 1;
                 } elseif ($status = 'off') {
@@ -60,22 +65,17 @@ class AttendanceController extends Controller
                 } else {
                     $value = null;
                 }
-                $attendance
-                    ->students()
-                    ->attach($student_id, ['status' => $value]);
+                $attendance->students()->attach($student_id, ['status' => $value]);
             }
-            alert('Good Job', 'Attendance taken successfully', 'success');
+            return redirect('/class/attendance')->with('success', 'Good Job, Attendance taken successfully');
         }
-        return back();
     }
 
-    public function updateAttendanceData(
-        Attendance $attendance,
-        Request $request
-    ) {
+    public function updateAttendanceData(Attendance $attendance,Request $request)
+    {
         $attendance->students()->detach();
         $this->attachStudents($attendance, $request);
-        alert('Good Job', 'Attendance data updated successfully', 'success');
+        return redirect('/class/attendance')->with('status', 'Good Job, Attendance data updated successfully');
     }
 
     public function destroy(Attendance $attendance)

@@ -38,6 +38,7 @@
 @yield('script3')
 @yield('script4')
 @yield('script5')
+@yield('script6')
 
 <!-- Template Main JS File -->
 

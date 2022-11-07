@@ -16,7 +16,7 @@ class CreateSubjectStudentTable extends Migration
         Schema::create('subject_student', function (Blueprint $table) {
             $table->id();
             $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('student_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
             $table->unique(['subject_id', 'student_id']);
         });

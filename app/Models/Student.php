@@ -21,12 +21,12 @@ class Student extends Model
         return $this->hasOne(Kelas::class);
     }
 
-    public function subject()
+    public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'subject_student', 'student_id', 'subject_id')->withTimestamps();
     }
 
-    public function attendances()
+   /*  public function attendances()
     {
         return $this->belongsToMany(Attendance::class)->wherePivot('status');
     }
@@ -39,7 +39,7 @@ class Student extends Model
     public function absent_count()
     {
         return $this->belongsToMany(Attendance::class)->wherePivot('status', 0)->count();
-    }
+    } */
 
     public function schedule()
     {

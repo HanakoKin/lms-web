@@ -48,9 +48,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Subject::class)->withTimeStamps();
     }
 
-    public function attendances()
+     public function attendances()
     {
-        return $this->hasMany(Attendance::class);
+        return $this->belongsToMany(Attendance::class)->wherePivot('status');
+    }
+
+    public function present_count()
+    {
+        return $this->belongsToMany(Attendance::class)->wherePivot('status', 1)->count();
+    }
+
+    public function absent_count()
+    {
+        return $this->belongsToMany(Attendance::class)->wherePivot('status', 0)->count();
     }
 
     /**
