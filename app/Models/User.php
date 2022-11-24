@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use App\Models\Admin;
+use App\Models\Topic;
+use App\Models\Comment;
 use App\Models\Student;
+use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\Attendance;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,6 +66,16 @@ class User extends Authenticatable
     public function absent_count()
     {
         return $this->belongsToMany(Attendance::class)->wherePivot('status', 0)->count();
+    }
+
+    public function topic()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     /**

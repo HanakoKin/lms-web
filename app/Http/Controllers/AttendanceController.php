@@ -23,24 +23,17 @@ class AttendanceController extends Controller
             ->withCount('students')
             ->get();
         $subjects = Subject::all();
-        return view('teacher.class.absent', compact('attendances', 'subjects')
-        );
+        return view('teacher.class.absent', compact('attendances', 'subjects'));
     }
 
     public function store(StoreAttendanceRequest $request)
     {
         $attendance = Attendance::create($request->validated() + ['user_id' => Auth::id()]);
-        return back()->with('status', 'Good Job, You can start your attendance now !!!');
-    }
-
-    public function show(Attendance $attendance)
-    {
         $subject = Subject::findorfail($attendance->first('subject_id'));
         $subject->load('students');
+        return view('teacher.class.absent.take-attendance', compact('subject', 'attendance'))->with('status', 'Good Job, You can start your attendance now !!!');
 
-        $attendance = Attendance::findorfail($attendance->id);
-
-        return view('teacher.class.absent.take-attendance', compact('subject', 'attendance'));
+        // return back()->with('status', 'Good Job, You can start your attendance now !!!');
     }
 
     public function edit(Attendance $attendance)

@@ -11,6 +11,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\RoleRegisterController;
 
 /*
@@ -118,7 +119,9 @@ Route::resource('/class/attendance', AttendanceController::class)->middleware('a
 
 Route::get('/class/storage/{name}', [ClassController::class, 'storage']);
 Route::get('/class/quiz/{name}', [ClassController::class, 'quiz']);
-Route::get('/class/discussion/{name}', [ClassController::class, 'discussion']);
+Route::post('/class/discussion/topic', [DiscussionController::class, 'storetopic'])->name('topic.store');
+Route::post('/class/discussion/comment', [DiscussionController::class, 'storecomment'])->name('comment.store');
+Route::get('/class/discussion/{name}', [DiscussionController::class, 'index']);
 
 
 

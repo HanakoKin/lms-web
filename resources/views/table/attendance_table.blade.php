@@ -30,8 +30,6 @@
                 {{ $attendance->date->format('D d, m, Y') }}
             </td>
             <td>
-                <a href="{{ route('attendance.show', $attendance) }}" class="badge bg-success"><i
-                        class="fa-solid fa-eye"></i></a>
                 <a href="{{ route('attendance.edit', $attendance) }}" class="badge bg-warning"><i
                         class="fa-solid fa-pen-to-square"></i></a>
                 <form action="{{ route('attendance.destroy', $attendance) }}" class="d-inline" method="post">

@@ -19,7 +19,7 @@ class ClassController extends Controller
     }
     public function storage()
     {
-        return view('student.class.storage', [
+        return view('teacher.class.storage', [
             'title' => 'Course | Storage Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
@@ -35,7 +35,7 @@ class ClassController extends Controller
     }
     public function discussion()
     {
-        return view('student.class.discussion', [
+        return view('teacher.class.discussion', [
             'title' => 'Course | Discussion Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
