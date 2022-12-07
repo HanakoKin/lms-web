@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\File;
 use App\Models\Admin;
 use App\Models\Topic;
+use App\Models\Folder;
 use App\Models\Comment;
 use App\Models\Student;
 use App\Models\Subject;
@@ -76,6 +78,16 @@ class User extends Authenticatable
     public function comment()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function folder()
+    {
+        return $this->hasMany(Folder::class);
+    }
+
+    public function file()
+    {
+        return $this->hasMany(File::class);
     }
 
     /**

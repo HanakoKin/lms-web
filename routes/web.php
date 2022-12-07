@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StorageController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
@@ -117,7 +118,12 @@ Route::resource('/class/attendance', AttendanceController::class)->middleware('a
 
 
 
-Route::get('/class/storage/{name}', [ClassController::class, 'storage']);
+Route::get('/class/storage/{name}', [StorageController::class, 'index']);
+Route::get('/class/storage/showfolder/{id}', [StorageController::class, 'showfolder']);
+Route::post('/class/storage/addfolder', [StorageController::class, 'addfolder'])->name('storage.addfolder');
+Route::post('/class/storage/addfile', [StorageController::class, 'addfile'])->name('storage.addfile');
+
+
 Route::get('/class/quiz/{name}', [ClassController::class, 'quiz']);
 Route::post('/class/discussion/topic', [DiscussionController::class, 'storetopic'])->name('topic.store');
 Route::post('/class/discussion/comment', [DiscussionController::class, 'storecomment'])->name('comment.store');

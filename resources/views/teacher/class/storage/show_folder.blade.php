@@ -18,48 +18,28 @@
 
             <div class="card">
                 <div class="card-body pt-3">
-                    <div class="tab-content pt-0">
+                    <div class="tab-content pt-2">
 
-                        <!-- Storage -->
-                        <div class="tab-pane active pt-2 px-2">
+                        <!-- Show Folder -->
+                        <div class="tab-pane active pt-3 px-2">
 
                             <div class="pt-0 pb-3">
-                                <h5 class="card-title pt-0 pb-0 mb-0">Add new Folder</h5>
+                                <h5 class="card-title pt-0 pb-0 mb-0">Add new File</h5>
 
                                 <div class="filter">
 
                                     <div class="pe-3 pb-2">
                                         <button type="button" class="btn py-1 px-2" data-bs-toggle="modal"
-                                            data-bs-target="#add-folder">
+                                            data-bs-target="#add-file">
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
 
                                 </div>
-                                @include('include.add_folder')
-                            </div>
-
-                            <div class="row flex-row flex-nowrap overflow-x-scroll py-2" style="height: 170px">
 
                                 @foreach ($folders as $folder)
 
-                                <div class="col-md-3 mb-3 pb-3">
-                                    <div class="col-md-6">
-                                        <div class="class storage-card" style="width: 200px">
-                                            <div class="pt-2 ps-5">
-                                                <div class="card-icon rounded-circle d-flex align-items-center">
-                                                    <i class="bi bi-folder-fill"></i>
-                                                </div>
-                                                <div class="pt-0 pb-3">
-                                                    <h4>{{ $folder->name }}</h4>
-                                                    <a href="/class/storage/showfolder/{{ $folder->id }}"
-                                                        class="text-muted small pt-1 stretched-link">{{
-                                                        $folder->file_count }} Files</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('include.add_file')
 
                                 @endforeach
 
@@ -67,34 +47,28 @@
 
                             <div class="table-responsive">
                                 <table class="table table-hover table-nowrap">
-                                    <h5 class="card-title mb-0">Recent Upload</h5>
+                                    <h5 class="card-title mb-0">Folder</h5>
                                     <thead class="table-light">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Owner</th>
                                             <th scope="col">File</th>
                                             <th scope="col">Last Modified</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
 
-                                        @foreach ($uploads as $upload)
-
+                                        @foreach ($files as $file)
                                         <tr>
                                             <td data-label="#"> <span>{{ $loop->iteration }}</span> </td>
-                                            <td data-label="Owner"> <span>{{ $upload->teacher->name}}</span> </td>
-                                            <td data-label="File"> <span>{{ $upload->data_file}}</span> </td>
-                                            <td data-label="Last Modified"> <span>{{ $upload->updated_at }}</span>
+                                            <td data-label="File"> <span>{{ $file->data_file}}</span> </td>
+                                            <td data-label="Last Modified"> <span>{{ $file->updated_at }}</span>
                                             </td>
                                         </tr>
-
                                         @endforeach
 
                                     </tbody>
                                 </table>
                             </div>
-                            <!--Storage Quiz -->
                         </div>
 
                     </div><!-- End Bordered Tabs -->

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Folder;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Schedule;
@@ -40,5 +41,10 @@ class Subject extends Model
     public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function folder()
+    {
+        return $this->hasMany(Folder::class);
     }
 }
