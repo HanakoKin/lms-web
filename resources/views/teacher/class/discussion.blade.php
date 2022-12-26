@@ -59,10 +59,11 @@
                                     <div class="d-flex justify-content-between pt-3">
                                         <div class="d-flex justify-content-between w-100">
                                             @include('include.show_comment')
+
                                             <button class="badge bg-info" data-bs-toggle="modal"
                                                 data-bs-target="#showcomment{{ $topic->id }}"><i
                                                     class="fa-solid fa-comments"></i>
-                                                {{ $topic->comment_count }} comment
+                                                {{ $topic->comment->count() }} comment
                                             </button>
 
                                             <button href="/" class="badge bg-success" data-bs-toggle="modal"

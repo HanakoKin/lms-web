@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LoginController;
@@ -119,14 +120,21 @@ Route::resource('/class/attendance', AttendanceController::class)->middleware('a
 
 
 Route::get('/class/storage/{name}', [StorageController::class, 'index']);
-Route::get('/class/storage/showfolder/{id}', [StorageController::class, 'showfolder']);
 Route::post('/class/storage/addfolder', [StorageController::class, 'addfolder'])->name('storage.addfolder');
+Route::get('/class/storage/showfolder/{id}', [StorageController::class, 'showfolder']);
+Route::get('/class/storage/deletefolder/{id}', [StorageController::class, 'deletefolder',]);
 Route::post('/class/storage/addfile', [StorageController::class, 'addfile'])->name('storage.addfile');
+Route::get('/class/storage/download/{file}', [StorageController::class, 'downloadfile']);
+Route::get('/class/storage/delete/{id}', [StorageController::class, 'deletefile']);
 
 
-Route::get('/class/quiz/{name}', [ClassController::class, 'quiz']);
+Route::post('/class/task/addtask', [TaskController::class, 'storetask'])->name('task.store');
+Route::get('/class/task/{name}', [TaskController::class, 'index']);
+
+
 Route::post('/class/discussion/topic', [DiscussionController::class, 'storetopic'])->name('topic.store');
 Route::post('/class/discussion/comment', [DiscussionController::class, 'storecomment'])->name('comment.store');
+Route::get('/class/discussion/showcomment/{id}', [DiscussionController::class, 'showcomment']);
 Route::get('/class/discussion/{name}', [DiscussionController::class, 'index']);
 
 

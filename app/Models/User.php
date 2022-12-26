@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\File;
 use App\Models\Admin;
 use App\Models\Topic;
+use App\Models\Tugas;
 use App\Models\Folder;
 use App\Models\Comment;
 use App\Models\Student;
@@ -88,6 +89,16 @@ class User extends Authenticatable
     public function file()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function tugas()
+    {
+        return $this->hasMany(Tugas::class);
+    }
+
+    public function upload_tugas()
+    {
+        return $this->hasMany(Upload_Tugas::class);
     }
 
     /**

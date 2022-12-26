@@ -2,85 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Models\File;
+use App\Models\User;
+use App\Models\Tugas;
+use App\Models\Subject;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('teacher.class.task', [
+            'title' => 'Course | Task Page',
+            'name' => User::where('name', auth()->user()->name)->get(),
+            'tasks' => Tugas::latest()->get(),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function storetask(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'string',
+            'filename.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
+        ]);
+
+
+
+        if ($request->filename != null) {
+            $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('filename')->getClientOriginalName());
+
+            $request->file('filename')->move(public_path('files'), $filename);
+
+            Tugas::create([ 'data_file' => $filename ] + ['teacher_id' => auth()->user()->id] + ['subject_id' => '1'] + ['name' => $request['name']] + ['description' => $request['description']] + ['dateline' => $request['dateline']]);
+
+            return back()->with('status', 'Good Job, a Task with file has been added!');
+
+        }else{
+            Tugas::create(['teacher_id' => auth()->user()->id] + ['subject_id' => '1'] + ['name' => $request['name']] + ['description' => $request['description']] + ['dateline' => $request['dateline']]);
+
+            return back()->with('status', 'Good Job, a Task has been added!');
+        }
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTaskRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
-    }
 }

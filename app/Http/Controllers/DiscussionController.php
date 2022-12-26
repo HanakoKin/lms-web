@@ -18,7 +18,7 @@ class DiscussionController extends Controller
         $title = 'Course | Discussion Page';
         $name = User::where('name', auth()->user()->name)->get();
         $subjects = Subject::all();
-        $topics = Topic::withCount('comment')->with('teacher')->latest()->get();
+        $topics = Topic::latest()->get();
         $comments = Comment::with('topic')->get();
         return view('teacher.class.discussion', compact('subjects', 'topics', 'comments'));
     }

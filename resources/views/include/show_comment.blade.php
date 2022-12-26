@@ -7,11 +7,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{ $topic->comment }}
-                {{-- @foreach ($comments as $comment)
-                <div class="card">{{ $comment->comment }}</div>
-                @endforeach --}}
-                {{-- {{ $comment->comment }} --}}
+                @foreach ($topic->comment as $data )
+                {{ $data->comment }}
+                @endforeach
+
             </div>
         </div>
     </div>

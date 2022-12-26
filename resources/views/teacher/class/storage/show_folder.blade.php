@@ -18,13 +18,15 @@
 
             <div class="card">
                 <div class="card-body pt-3">
-                    <div class="tab-content pt-2">
+                    <div class="tab-content pt-0">
 
                         <!-- Show Folder -->
                         <div class="tab-pane active pt-3 px-2">
 
+                            @include('include.alert')
+
                             <div class="pt-0 pb-3">
-                                <h5 class="card-title pt-0 pb-0 mb-0">Add new File</h5>
+                                <h5 class="card-title pt-0 pb-0 mb-0">Files</h5>
 
                                 <div class="filter">
 
@@ -45,30 +47,19 @@
 
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover table-nowrap">
-                                    <h5 class="card-title mb-0">Folder</h5>
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">File</th>
-                                            <th scope="col">Last Modified</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <div class="table-responsive pb-3">
 
-                                        @foreach ($files as $file)
-                                        <tr>
-                                            <td data-label="#"> <span>{{ $loop->iteration }}</span> </td>
-                                            <td data-label="File"> <span>{{ $file->data_file}}</span> </td>
-                                            <td data-label="Last Modified"> <span>{{ $file->updated_at }}</span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                @include('table.file_table')
 
-                                    </tbody>
-                                </table>
+                                @foreach ($files as $file)
+                                @include('include.show_file')
+                                @endforeach
+
                             </div>
+
+                            <a href="/class/storage/deletefolder/{{ $folder->id }}"
+                                onclick="return confirm('Are you sure want to delete this folder?')"
+                                class="badge bg-danger"><i class="fa-solid fa-trash"></i> Delete this folder</a>
                         </div>
 
                     </div><!-- End Bordered Tabs -->

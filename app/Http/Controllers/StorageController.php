@@ -8,6 +8,9 @@ use App\Models\Folder;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\StorageController;
 
 class StorageController extends Controller
 {
@@ -22,7 +25,7 @@ class StorageController extends Controller
         return view('teacher.class.storage', compact('folders', 'uploads'));
     }
 
-    public function showfolder($id)
+    public function showFolder($id)
     {
 
         $title = 'Course | Discussion Page';
@@ -32,7 +35,7 @@ class StorageController extends Controller
         return view('teacher.class.storage.show_folder', compact('files', 'folders'));
     }
 
-    public function addfolder(Request $request)
+    public function addFolder(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -41,6 +44,16 @@ class StorageController extends Controller
         $create = Folder::create($validatedData + ['teacher_id' => auth()->user()->id] + ['subject_id' => '1']);
 
         return back()->with('status', 'Good Job, a Folder has been added!');
+    }
+
+    public function deleteFolder($id)
+    {
+        $delete = Folder::where('folders.id', '=', $id)->delete();
+
+        return redirect()->action([StorageController::class, 'index'], ['name' => Auth::user()->name])->with(
+            'status',
+            'Success delete a folder in your table!'
+        );
     }
 
     public function addFile(Request $request)
@@ -62,5 +75,20 @@ class StorageController extends Controller
         }else{
             return back()->with('error', 'Oops, Please try again!');
         }
+    }
+
+    public function downloadFile(Request $request,$file)
+    {
+        return Response::Download(public_path('files/'.$file));
+    }
+
+     public function deleteFile($id)
+    {
+        $file = File::where('files.id', '=', $id)->delete();
+
+        return back()->with(
+            'status',
+            'Success delete a file from your table!'
+        );
     }
 }

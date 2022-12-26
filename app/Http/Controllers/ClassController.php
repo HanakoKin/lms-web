@@ -25,10 +25,10 @@ class ClassController extends Controller
             'subjects' => Subject::all(),
         ]);
     }
-    public function quiz()
+    public function task()
     {
-        return view('student.class.quiz', [
-            'title' => 'Course | Quiz Page',
+        return view('teacher.class.task', [
+            'title' => 'Course | Task Page',
             'name' => User::where('name', auth()->user()->name)->get(),
             'subjects' => Subject::all(),
         ]);

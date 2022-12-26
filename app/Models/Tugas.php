@@ -3,23 +3,24 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Topic;
+use App\Models\Upload_Tugas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class Tugas extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function user()
+    public function teacher()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function topic()
+    public function upload_tugas()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->hasMany(Upload_Tugas::class);
     }
+
 }

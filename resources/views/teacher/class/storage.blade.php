@@ -17,14 +17,16 @@
         <div class="col-xl-12">
 
             <div class="card">
-                <div class="card-body pt-3">
+                <div class="card-body py-2">
                     <div class="tab-content pt-0">
 
                         <!-- Storage -->
-                        <div class="tab-pane active pt-2 px-2">
+                        <div class="tab-pane active pt-2">
 
-                            <div class="pt-0 pb-3">
-                                <h5 class="card-title pt-0 pb-0 mb-0">Add new Folder</h5>
+                            @include('include.alert')
+
+                            <div class="pt-2 pb-3">
+                                <h5 class="card-title pt-0 pb-2 mb-0">Add new Folder</h5>
 
                                 <div class="filter">
 
@@ -39,7 +41,7 @@
                                 @include('include.add_folder')
                             </div>
 
-                            <div class="row flex-row flex-nowrap overflow-x-scroll py-2" style="height: 170px">
+                            <div class="row flex-row flex-nowrap overflow-x-scroll pb-0" style="height: 170px">
 
                                 @foreach ($folders as $folder)
 
@@ -65,35 +67,7 @@
 
                             </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-hover table-nowrap">
-                                    <h5 class="card-title mb-0">Recent Upload</h5>
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Owner</th>
-                                            <th scope="col">File</th>
-                                            <th scope="col">Last Modified</th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
-
-                                        @foreach ($uploads as $upload)
-
-                                        <tr>
-                                            <td data-label="#"> <span>{{ $loop->iteration }}</span> </td>
-                                            <td data-label="Owner"> <span>{{ $upload->teacher->name}}</span> </td>
-                                            <td data-label="File"> <span>{{ $upload->data_file}}</span> </td>
-                                            <td data-label="Last Modified"> <span>{{ $upload->updated_at }}</span>
-                                            </td>
-                                        </tr>
-
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-                            </div>
                             <!--Storage Quiz -->
                         </div>
 
@@ -101,8 +75,39 @@
 
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body py-2">
+                    <div class="table-responsive pb-2">
+                        <table class="table table-hover table-nowrap">
+                            <h5 class="card-title mb-0">Recent Upload</h5>
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Owner</th>
+                                    <th scope="col">File</th>
+                                    <th scope="col">Last Modified</th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+
+                                @foreach ($uploads as $upload)
+
+                                <tr>
+                                    <td data-label="#"> <span>{{ $loop->iteration }}</span> </td>
+                                    <td data-label="Owner"> <span>{{ $upload->teacher->name}}</span> </td>
+                                    <td data-label="File"> <span>{{ $upload->data_file}}</span> </td>
+                                    <td data-label="Last Modified"> <span>{{ $upload->updated_at }}</span>
+                                    </td>
+                                </tr>
+
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </section>
 @endsection

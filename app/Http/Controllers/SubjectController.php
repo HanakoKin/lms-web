@@ -77,7 +77,7 @@ class SubjectController extends Controller
 
         return back()->with(
             'status',
-            'Success delete a subject in your table!'
+            'Success delete a subject from your table!'
         );
     }
 

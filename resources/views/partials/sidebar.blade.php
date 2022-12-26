@@ -39,9 +39,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link {{ Request::is('*class/quiz/*') ? '' : 'collapsed' }}"
-                            href="/class/quiz/{{ auth()->user()->name }}">
-                            <i class="bi bi-circle"></i><span>Quiz</span>
+                        <a class="nav-link {{ Request::is('*class/task/*') ? '' : 'collapsed' }}"
+                            href="/class/task/{{ auth()->user()->name }}">
+                            <i class="bi bi-circle"></i><span>Task</span>
                         </a>
                     </li>
                     <li>

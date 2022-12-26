@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Topic;
+use App\Models\Tugas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class Upload_Tugas extends Model
 {
     use HasFactory;
 
@@ -18,8 +18,9 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function topic()
+    public function tugas()
     {
-        return $this->belongsTo(Topic::class);
+        return $this->belongsTo(Tugas::class);
     }
+
 }
